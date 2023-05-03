@@ -43,7 +43,36 @@ public class Server {
             Object[] paramValueList = new Object[methodParams.length];
 
             for (int i = 0; i < methodParams.length; i++) {
-                if(methodParams[i].getType().equals("int")) {
+                switch (methodParams[i].getType()) { // add exceptions for primitive class
+                    case "int":
+                        paramTypeList[i] = int.class;
+                        break;
+                    case "byte":
+                        paramTypeList[i] = byte.class;
+                        break;
+                    case "short":
+                        paramTypeList[i] = short.class;
+                        break;
+                    case "long":
+                        paramTypeList[i] = long.class;
+                        break;
+                    case "float":
+                        paramTypeList[i] = float.class;
+                        break;
+                    case "double":
+                        paramTypeList[i] = double.class;
+                        break;
+                    case "char":
+                        paramTypeList[i] = char.class;
+                        break;
+                    case "boolean":
+                        paramTypeList[i] = boolean.class;
+                        break;
+                    default:
+                        paramTypeList[i] = Class.forName(methodParams[i].getType());
+                }
+
+                if(methodParams[i].getType().equals("int")) {  // add exceptions for primitive class
                     paramTypeList[i] = int.class;
                 } else {
                     paramTypeList[i] = Class.forName(methodParams[i].getType());
